@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+
+    <div class="container">
+        <form action="#" class="login-form" name="submit-to-google-sheet">
+
+           
+            <input type="text" name="Name" id="Name" list="breeds" autocomplete="on" placeholder="Имя мастера" required>
+            <datalist id="breeds">
+                <option value="Ануш"></option>
+                <option value="Другой"></option>
+                
+            </datalist>
+            
+            <input type="date" name="Date" id="Date" autocomplete="off" placeholder="Дата записи" required>
+           
+            
+            <label for="TimeOff">Время записей с 8:00 до 20:00 (кратно 30 мин)</label>
+            <input type="time" min="08:00" max="20:00" step="1800" name="TimeOn" id="TimeOn" autocomplete="on" required>
+        
+            <input type="time" min="08:00" max="20:00" step="1800" name="TimeOff" id="TimeOff" autocomplete="off"  required>
+
+            
+            
+            <button type="submit">Записать</button>
+
+            <span id="sendText"></span>
+
+            
+        </form>
+        <div>
+            
+
+            <form action="./index.html" class="zarplata" target="_blank">
+                <button>Главная</button>                
+            </form>
+
+        </div>
+
+
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyhugVyFK0ZsNSdKeAjSTaQN4fGxaSEgFJsT-qj4M5S_3fOtv-4kG144gwzI6q7LdPw/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const sendText = document.getElementById('sendText')
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    sendText.innerHTML = "Спасибо, твои данные отправлены успешно!"
+                    setTimeout(function () {
+                        sendText.innerHTML = ''
+                    }, 3000)
+                    form.reset()
+                })
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+
+
+
+
+</body>
+
+</html>
