@@ -22,13 +22,14 @@
                 <option value="Другой"></option>
                 
             </datalist>
-            
+
+            <label for="Date">Дата записи</label>
             <input type="date" name="Date" id="Date" autocomplete="off" placeholder="Дата записи" required>
            
             
-            <label for="TimeOff">Время записей с 8:00 до 20:00 (кратно 30 мин)</label>
+            <label for="TimeOn">Время начала записи 8:00 до 20:00</label>
             <input type="time" min="08:00" max="20:00" step="1800" name="TimeOn" id="TimeOn" autocomplete="on" required>
-        
+            <label for="TimeOff">Время конца записи 8:00 до 20:00</label>
             <input type="time" min="08:00" max="20:00" step="1800" name="TimeOff" id="TimeOff" autocomplete="off"  required>
 
             
